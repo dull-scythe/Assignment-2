@@ -43,12 +43,12 @@ class StudentRepository:
 
 
     def delete_student(self, student_id):
-        try:
+        if student_id < 1000 or student_id > 9999:
+            cursor.execute("SELECT * FROM Students WHERE student_id < 1000", (student_id))
+        elif student_id > 1000 or student_id < 10000:
             cursor.execute("DELETE FROM Students WHERE student_id = (?)", (student_id,))
             conn.commit()
-            return cursor.fetchone()
-        except Exception as error:
-            print(f"Student may have already been deleted or {error}.")
+        return cursor.fetchone()
 
 
 

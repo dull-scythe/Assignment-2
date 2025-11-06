@@ -31,9 +31,12 @@ class StudentRecords:
 
     def delete_student(self, student_id):
         try:
-            self.student_info.delete_student(student_id)
-            print(f"Student {student_id} has been deleted.\n")
-        except:
-              print(f"Student has already been deleted.")
+            if student_id < 1000: 
+                 raise ValueError
+            elif student_id > 1000: 
+                self.student_info.delete_student(student_id)
+                print(f"Student {student_id} has been deleted.\n")
+        except ValueError:
+              print(f"Invalid Student ID. Please try again.")
 
     
